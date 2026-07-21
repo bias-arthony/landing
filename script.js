@@ -100,6 +100,7 @@
           status.className = "form-status ok";
           status.textContent = "> message delivered. thanks!";
           form.reset();
+          if (window.hcaptcha) window.hcaptcha.reset();
         } else {
           throw new Error(data.message || "failed");
         }
