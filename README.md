@@ -9,7 +9,7 @@ aesthetic. No frameworks, no build step — pure HTML, CSS, and vanilla JS.
 
 - HTML5 · CSS3 (custom properties, no Tailwind) · Vanilla JS
 - Fonts: Inter + JetBrains Mono (Google Fonts)
-- Contact: `mailto:` button
+- Contact form: [Web3Forms](https://web3forms.com) (serverless)
 - Hosting: GitHub Pages / Cloudflare Pages
 
 ## Structure
@@ -36,8 +36,10 @@ python3 -m http.server 8787   # → http://localhost:8787
 
 ## Before going live
 
-1. **CV** — drop your resume at `assets/Bias-Arthony-CV.pdf`.
-2. **LinkedIn** — set the footer link (currently `#`).
+1. **Contact form** — replace `YOUR_WEB3FORMS_ACCESS_KEY` in `index.html` with your
+   key from [web3forms.com](https://web3forms.com).
+2. **CV** — drop your resume at `assets/Bias-Arthony-CV.pdf`.
+3. **LinkedIn** — set the footer link (currently `#`).
 
 ## Deploy
 

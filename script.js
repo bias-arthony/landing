@@ -82,4 +82,32 @@
       setTimeout(function () { typeText(el, text, pos + 1, done); }, 42);
     }
   }
+
+  /* ── Contact form → Web3Forms (no backend) ── */
+  var form = document.getElementById("contact-form");
+  var status = document.getElementById("form-status");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = form.querySelector(".btn-submit");
+    status.className = "form-status";
+    status.textContent = "> sending...";
+    btn.disabled = true;
+
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.success) {
+          status.className = "form-status ok";
+          status.textContent = "> message delivered. thanks!";
+          form.reset();
+        } else {
+          throw new Error(data.message || "failed");
+        }
+      })
+      .catch(function () {
+        status.className = "form-status err";
+        status.textContent = "> error: could not send. email biasarthony@gmail.com instead.";
+      })
+      .finally(function () { btn.disabled = false; });
+  });
 })();
