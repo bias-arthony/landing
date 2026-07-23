@@ -111,28 +111,4 @@
       .finally(function () { btn.disabled = false; });
   });
 
-  /* ── Full-page lock: passphrase = years of experience from /api/profile ── */
-  var lock = document.getElementById("lock");
-  if (lock) {
-    if (sessionStorage.getItem("unlocked") === "1") {
-      lock.remove();
-    } else {
-      document.body.classList.add("locked");
-      var lform = document.getElementById("lock-form");
-      var linput = document.getElementById("lock-input");
-      linput.focus();
-      lform.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (parseInt(linput.value, 10) === 15) {   // accepts "15", "15+", "15 years", ...
-          sessionStorage.setItem("unlocked", "1");
-          document.body.classList.remove("locked");
-          lock.classList.add("hidden");
-          setTimeout(function () { lock.remove(); }, 400);
-        } else {
-          document.getElementById("lock-msg").textContent = "> Access denied. Permission denied (publickey).";
-          linput.value = "";
-        }
-      });
-    }
-  }
 })();

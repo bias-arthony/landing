@@ -54,27 +54,6 @@
 
 <body>
 
-  <!-- ── Full-page lock screen (passphrase = years of experience from /api/profile) ── -->
-  <div id="lock" class="lock">
-    <div class="terminal lock-term">
-      <div class="term-bar">
-        <span class="dots"><i></i><i></i><i></i></span>
-        <span class="term-title">bias.my.id — login</span>
-        <span></span>
-      </div>
-      <div class="term-body">
-        <p class="cmd"><span class="prompt">guest@web</span><span class="path">:~$</span> ssh bias@bias.my.id</p>
-        <p class="out">Authentication required to access this system.</p>
-        <p class="out">hint: run <span class="cmd-text">curl https://bias.my.id/api/profile</span> and enter the years of experience.</p>
-        <form id="lock-form" class="vault-form" autocomplete="off">
-          <span class="prompt">password:</span>
-          <input id="lock-input" type="password" aria-label="password" autocomplete="off" />
-        </form>
-        <p class="out vault-denied" id="lock-msg" role="status" aria-live="polite"></p>
-      </div>
-    </div>
-  </div>
-
   <!-- ── Navbar ─────────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -147,15 +126,6 @@
             <span class="tag">[RABBITMQ]</span><span>RUNNING</span>
             <span class="tag">[PAYMENT]</span><span>HEALTHY</span>
           </div>
-
-          <p class="cmd"><span class="prompt">bias@bias.my.id</span><span class="path">:~$</span> <span class="cmd-text">curl https://bias.my.id/api/profile</span></p>
-<pre class="out json"><span class="jp">{</span>
-  <span class="jk">"name"</span>: <span class="js">"Bias Arthony"</span>,
-  <span class="jk">"role"</span>: <span class="js">"Backend Engineer"</span>,
-  <span class="jk">"experience"</span>: <span class="js">"15+ years"</span>,
-  <span class="jk">"primary_language"</span>: <span class="js">"Go"</span>,
-  <span class="jk">"status"</span>: <span class="js">"Open to Work"</span>
-<span class="jp">}</span></pre>
 
           <p class="cmd"><span class="prompt">bias@bias.my.id</span><span class="path">:~$</span> <span class="caret" id="caret"></span></p>
         </div>
