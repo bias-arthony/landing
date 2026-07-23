@@ -1,0 +1,11 @@
+# Files NOT to serve publicly (assets.directory is "." = repo root).
+.git
+.github
+.claude
+node_modules
+.gitignore
+.assetsignore
+wrangler.jsonc
+package.json
+package-lock.json
+README.md
