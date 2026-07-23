@@ -127,7 +127,14 @@
             <span class="tag">[PAYMENT]</span><span>HEALTHY</span>
           </div>
 
-          <p class="cmd"><span class="prompt">bias@bias.my.id</span><span class="path">:~$</span> <span class="caret" id="caret"></span></p>
+          <div id="term-history"></div>
+          <p class="cmd" id="term-line">
+            <span class="prompt">bias@bias.my.id</span><span class="path">:~$</span>
+            <input id="term-input" class="term-input" type="text" autocomplete="off" autocapitalize="off"
+              spellcheck="false" aria-label="terminal input" placeholder="curl https://bias.my.id/api/profile"
+              disabled />
+            <span class="caret" id="caret"></span>
+          </p>
         </div>
       </div>
     </section>

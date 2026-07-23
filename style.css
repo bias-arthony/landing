@@ -139,6 +139,23 @@ html[data-theme="dark"] .i-moon { display: block; }
 .path { color: var(--text-2); }
 .cmd-text { color: var(--text); }
 .out { color: var(--text-2); margin: 6px 0 20px; max-width: 68ch; }
+
+/* Interactive terminal input */
+#term-line { display: flex; align-items: center; flex-wrap: wrap; gap: 0 6px; }
+.term-input {
+  flex: 1; min-width: 120px;
+  background: transparent; border: none; outline: none;
+  color: var(--text); font-family: var(--mono); font-size: inherit;
+  caret-color: var(--accent); padding: 0;
+}
+.term-input::placeholder { color: var(--text-2); opacity: .5; }
+.term-input:focus + .caret { display: none; }
+
+/* JSON output (interactive curl) */
+.json { margin: 6px 0 16px; font-family: var(--mono); font-size: 13px; line-height: 1.6; white-space: pre; overflow-x: auto; }
+.json .jk { color: var(--accent); }
+.json .js { color: var(--text); }
+.json .jp { color: var(--text-2); }
 .out-name { color: var(--text); font-weight: 700; }
 .status-grid {
   display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px;
