@@ -110,4 +110,22 @@
       })
       .finally(function () { btn.disabled = false; });
   });
+
+  /* ── Secret vault: unlock with years of experience from /api/profile ── */
+  var vform = document.getElementById("vault-form");
+  if (vform) {
+    vform.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var val = document.getElementById("vault-input").value;
+      var msg = document.getElementById("vault-msg");
+      if (parseInt(val, 10) === 7) {          // accepts "7", "7+", "7 years", "7+ years"
+        document.getElementById("vault-secret").hidden = false;
+        document.getElementById("vault-hint").hidden = true;
+        vform.hidden = true;
+        msg.textContent = "";
+      } else {
+        msg.textContent = "> access denied. hint: curl the /api/profile endpoint.";
+      }
+    });
+  }
 })();

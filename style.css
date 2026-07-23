@@ -139,6 +139,21 @@ html[data-theme="dark"] .i-moon { display: block; }
 .path { color: var(--text-2); }
 .cmd-text { color: var(--text); }
 
+/* Secret vault */
+.vault-form { display: flex; align-items: baseline; gap: 8px; margin: 4px 0 10px; font-family: var(--mono); }
+.vault-form .prompt { color: var(--accent); }
+#vault-input {
+  background: transparent; border: none; border-bottom: 1px solid var(--line-strong);
+  color: var(--text); font-family: var(--mono); font-size: 14px; padding: 4px 2px;
+  outline: none; width: 160px; letter-spacing: 2px;
+}
+#vault-input:focus { border-color: var(--accent); }
+.vault-denied { color: #ba1a1a; min-height: 1em; margin: 0; }
+.vault-secret .tag { color: var(--accent); font-weight: 700; }
+.vault-secret p { margin-bottom: 10px; }
+.vault-secret a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.vault-secret a:hover { border-color: var(--accent); }
+
 /* JSON output (curl /api/profile) */
 .json { margin: 6px 0 20px; font-family: var(--mono); font-size: 13px; line-height: 1.6; white-space: pre; overflow-x: auto; }
 .json .jk { color: var(--accent); }
