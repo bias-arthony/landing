@@ -54,6 +54,27 @@
 
 <body>
 
+  <!-- ── Full-page lock screen (passphrase = years of experience from /api/profile) ── -->
+  <div id="lock" class="lock">
+    <div class="terminal lock-term">
+      <div class="term-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="term-title">bias.my.id — login</span>
+        <span></span>
+      </div>
+      <div class="term-body">
+        <p class="cmd"><span class="prompt">guest@web</span><span class="path">:~$</span> ssh bias@bias.my.id</p>
+        <p class="out">Authentication required to access this system.</p>
+        <p class="out">hint: run <span class="cmd-text">curl https://bias.my.id/api/profile</span> and enter the years of experience.</p>
+        <form id="lock-form" class="vault-form" autocomplete="off">
+          <span class="prompt">password:</span>
+          <input id="lock-input" type="password" aria-label="password" autocomplete="off" />
+        </form>
+        <p class="out vault-denied" id="lock-msg" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Navbar ─────────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -338,33 +359,6 @@
             <button type="submit" class="btn-submit">send_message --submit</button>
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Secret vault: unlock with years of experience from /api/profile ── -->
-    <section class="section" id="vault">
-      <div class="terminal reveal">
-        <div class="term-bar">
-          <span class="dots"><i></i><i></i><i></i></span>
-          <span class="term-title">sudo — restricted</span>
-          <span></span>
-        </div>
-        <div class="term-body">
-          <p class="cmd"><span class="prompt">bias@bias.my.id</span><span class="path">:~$</span> sudo access --grant</p>
-          <p class="out" id="vault-hint">// passphrase required. hint: <span class="cmd-text">curl https://bias.my.id/api/profile</span>
-            → how many years of experience?</p>
-          <form id="vault-form" class="vault-form" autocomplete="off">
-            <span class="prompt">passphrase:</span>
-            <input id="vault-input" type="text" aria-label="passphrase" placeholder="••••••" />
-          </form>
-          <p class="out vault-denied" id="vault-msg" role="status" aria-live="polite"></p>
-          <div class="out vault-secret" id="vault-secret" hidden>
-            <p><span class="tag">[ACCESS GRANTED]</span></p>
-            <p>Nice — you actually read the API. That attention to detail is exactly what I bring to a backend team.</p>
-            <p>&gt; Priority line: <a href="mailto:biasarthony@gmail.com?subject=curl%20unlocked%20%E2%80%94%20let%27s%20talk">biasarthony@gmail.com</a>
-              — mention "curl" and you go to the top of my inbox.</p>
-          </div>
         </div>
       </div>
     </section>

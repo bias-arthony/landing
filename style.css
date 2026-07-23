@@ -139,20 +139,26 @@ html[data-theme="dark"] .i-moon { display: block; }
 .path { color: var(--text-2); }
 .cmd-text { color: var(--text); }
 
-/* Secret vault */
-.vault-form { display: flex; align-items: baseline; gap: 8px; margin: 4px 0 10px; font-family: var(--mono); }
+/* Full-page lock screen */
+.lock {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; transition: opacity .4s ease;
+}
+.lock.hidden { opacity: 0; pointer-events: none; }
+.lock-term { width: 100%; max-width: 560px; }
+body.locked { overflow: hidden; }
+
+.vault-form { display: flex; align-items: baseline; gap: 8px; margin: 12px 0 10px; font-family: var(--mono); }
 .vault-form .prompt { color: var(--accent); }
-#vault-input {
+#lock-input {
   background: transparent; border: none; border-bottom: 1px solid var(--line-strong);
   color: var(--text); font-family: var(--mono); font-size: 14px; padding: 4px 2px;
-  outline: none; width: 160px; letter-spacing: 2px;
+  outline: none; width: 180px; letter-spacing: 3px;
 }
-#vault-input:focus { border-color: var(--accent); }
+#lock-input:focus { border-color: var(--accent); }
 .vault-denied { color: #ba1a1a; min-height: 1em; margin: 0; }
-.vault-secret .tag { color: var(--accent); font-weight: 700; }
-.vault-secret p { margin-bottom: 10px; }
-.vault-secret a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color .2s; }
-.vault-secret a:hover { border-color: var(--accent); }
 
 /* JSON output (curl /api/profile) */
 .json { margin: 6px 0 20px; font-family: var(--mono); font-size: 13px; line-height: 1.6; white-space: pre; overflow-x: auto; }
