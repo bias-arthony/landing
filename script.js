@@ -118,7 +118,7 @@
       e.preventDefault();
       var val = document.getElementById("vault-input").value;
       var msg = document.getElementById("vault-msg");
-      if (parseInt(val, 10) === 7) {          // accepts "7", "7+", "7 years", "7+ years"
+      if (parseInt(val, 10) === 15) {         // accepts "15", "15+", "15 years", "15+ years"
         document.getElementById("vault-secret").hidden = false;
         document.getElementById("vault-hint").hidden = true;
         vform.hidden = true;
