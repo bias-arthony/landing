@@ -55,22 +55,32 @@
     sections.forEach(function (s) { navObs.observe(s); });
   }
 
-  /* ── Hero typing effect ── */
+  /* ── Hero typing effect + interactive terminal ── */
   var caret = document.getElementById("caret");
   var cmds = document.querySelectorAll("#hero-term .cmd-text");
   var outs = document.querySelectorAll("#hero-term .out");
+  var termInput = document.getElementById("term-input");
+  var termHistory = document.getElementById("term-history");
+  var heroTerm = document.getElementById("hero-term");
+
+  var PROFILE_JSON =
+    '<pre class="out json"><span class="jp">{</span>\n' +
+    '  <span class="jk">"name"</span>: <span class="js">"Bias Arthony"</span>,\n' +
+    '  <span class="jk">"role"</span>: <span class="js">"Backend Engineer"</span>,\n' +
+    '  <span class="jk">"experience"</span>: <span class="js">"15+ years"</span>,\n' +
+    '  <span class="jk">"primary_language"</span>: <span class="js">"Go"</span>,\n' +
+    '  <span class="jk">"status"</span>: <span class="js">"Open to Work"</span>\n' +
+    '<span class="jp">}</span></pre>';
 
   if (!reduce && cmds.length) {
-    // hide outputs + stash command text, then type each command, revealing its output
     var texts = [];
     cmds.forEach(function (c, i) { texts[i] = c.textContent; c.textContent = ""; });
     outs.forEach(function (o) { o.style.opacity = "0"; });
     if (caret) caret.style.visibility = "hidden";
-
     typeSeq(0);
 
     function typeSeq(i) {
-      if (i >= cmds.length) { if (caret) caret.style.visibility = ""; return; }
+      if (i >= cmds.length) { if (caret) caret.style.visibility = ""; enableTerminal(); return; }
       typeText(cmds[i], texts[i], 0, function () {
         if (outs[i]) { outs[i].style.transition = "opacity .35s"; outs[i].style.opacity = "1"; }
         setTimeout(function () { typeSeq(i + 1); }, 260);
@@ -80,6 +90,55 @@
       if (pos > text.length) { done(); return; }
       el.textContent = text.slice(0, pos);
       setTimeout(function () { typeText(el, text, pos + 1, done); }, 42);
+    }
+  } else {
+    enableTerminal();
+  }
+
+  function enableTerminal() {
+    if (!termInput) return;
+    termInput.disabled = false;
+    if (heroTerm) heroTerm.addEventListener("click", function () { termInput.focus(); });
+    termInput.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+      var cmd = termInput.value.trim();
+      termInput.value = "";
+      if (!cmd) return;
+      echo(cmd);
+      runCommand(cmd);
+    });
+  }
+
+  function echo(cmd) {
+    var p = document.createElement("p");
+    p.className = "cmd";
+    p.innerHTML = '<span class="prompt">bias@bias.my.id</span><span class="path">:~$</span> ';
+    var span = document.createElement("span");
+    span.className = "cmd-text";
+    span.textContent = cmd;                 // textContent = safe against injection
+    p.appendChild(span);
+    termHistory.appendChild(p);
+  }
+
+  function out(html, isHTML) {
+    var el = document.createElement(isHTML ? "div" : "p");
+    el.className = "out";
+    if (isHTML) el.innerHTML = html; else el.textContent = html;
+    termHistory.appendChild(el);
+  }
+
+  function runCommand(cmd) {
+    var name = cmd.toLowerCase().split(/\s+/)[0];
+    if (name === "curl") {
+      out(PROFILE_JSON, true);
+    } else if (name === "whoami") {
+      out("Bias Arthony — Backend Engineer");
+    } else if (name === "help") {
+      out("available: curl <url>, whoami, help, clear");
+    } else if (name === "clear") {
+      termHistory.innerHTML = "";
+    } else {
+      out("command not found: " + name + ". try 'curl https://bias.my.id/api/profile' or 'help'.");
     }
   }
 
@@ -110,4 +169,5 @@
       })
       .finally(function () { btn.disabled = false; });
   });
+
 })();
