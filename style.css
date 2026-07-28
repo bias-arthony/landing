@@ -99,6 +99,7 @@ html[data-theme="dark"] .i-moon { display: block; }
 }
 .btn-cv:hover { opacity: .82; }
 .menu-btn { display: none; }
+.cv-mobile { display: none; }  /* shown only inside mobile dropdown */
 
 /* ── Layout ─────────────────────────────────── */
 .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gap); }
@@ -308,6 +309,7 @@ html[data-theme="dark"] .i-moon { display: block; }
   .nav-links.open { max-height: 320px; }
   .nav-links a { padding: 14px var(--gap); border-top: 1px solid var(--line); }
   .btn-cv { display: none; }
+  .cv-mobile { display: block; color: var(--accent); }
   .projects, .stack-grid { grid-template-columns: 1fr; }
   .projects .file-card:first-child { grid-column: auto; }
   .stack-col { border-left: none; border-top: 1px solid var(--line); }
