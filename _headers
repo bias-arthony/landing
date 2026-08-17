@@ -1,5 +1,5 @@
-# Cloudflare Pages: serve the profile file as real JSON.
+# Cloudflare Pages: serve the API files as real JSON.
 # (GitHub Pages ignores this file; curl still returns the JSON body.)
-/api/profile
+/api/*
   Content-Type: application/json; charset=utf-8
   Access-Control-Allow-Origin: *

@@ -1,0 +1,12 @@
+[
+  { "name": "MYXL", "type": "Payment / Backend Systems", "stack": ["Go", "Redis", "PostgreSQL"], "url": "https://www.xl.co.id/myxl" },
+  { "name": "DBO", "type": "Enterprise API Platform", "stack": ["Go", "RabbitMQ", "Redis", "Laravel"] },
+  { "name": "Apollo", "type": "Reimbursement Platform", "stack": ["Go", "Xendit"], "url": "https://getapollo.co/reimbursement" },
+  { "name": "Freshbox", "type": "E-commerce Backend", "stack": ["Laravel", "MySQL", "Midtrans"], "url": "https://www.freshbox.id/" },
+  { "name": "Nimbly", "type": "Backend Services", "stack": ["Go", "MongoDB"] },
+  { "name": "Cimory", "type": "Automation Backend", "stack": ["Laravel", "MySQL"] },
+  { "name": "Rootin", "type": "Payment Services", "stack": ["Go"] },
+  { "name": "Dompetkilat", "type": "Digital Wallet", "stack": ["Go"] },
+  { "name": "Jaya Manex", "type": "Web Application", "stack": ["Laravel"] },
+  { "name": "Summit Healthcare", "type": "LMS Backend", "stack": ["Moodle", "PHP", "MySQL"], "url": "https://www.summithealthcare.co.id/" }
+]
