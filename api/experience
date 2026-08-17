@@ -1,0 +1,26 @@
+[
+  {
+    "role": "Backend Engineer",
+    "company": "Aleph Labs",
+    "location": "Indonesia",
+    "period": "2023 - Present",
+    "projects": ["BRI (47.8M+ users)", "MYXL (39.1M+ users)"],
+    "stack": ["Go", "PostgreSQL", "Redis", "Docker", "REST API"]
+  },
+  {
+    "role": "Backend Developer",
+    "company": "RebelWorks",
+    "location": "Jakarta",
+    "period": "2018 - 2023",
+    "projects": ["Freshbox", "Rootin", "Nimbly", "Cimory", "Summit Healthcare", "Jaya Manex", "Dompetkilat"],
+    "stack": ["Go", "Laravel", "MySQL", "MongoDB", "Redis"]
+  },
+  {
+    "role": "Web Developer",
+    "company": "Wira Imaji Nyata",
+    "location": "Jakarta",
+    "period": "2011 - 2018",
+    "projects": ["Toshiba", "Bebelac", "Air Mancur", "M150", "PT Monokem Surya", "Aurora Jewelry"],
+    "stack": ["PHP", "MySQL", "CMS"]
+  }
+]

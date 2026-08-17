@@ -1,0 +1,7 @@
+{
+  "languages": ["Go", "PHP", "SQL"],
+  "backend": ["Laravel", "REST API", "Microservices", "Clean Architecture"],
+  "data": ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
+  "messaging": ["RabbitMQ"],
+  "infrastructure": ["Docker", "Linux", "Git"]
+}
