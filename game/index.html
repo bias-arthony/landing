@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bias Arthony — Backend Engineer (Go, PostgreSQL, Redis)</title>
+<meta name="description" content="Bias Arthony, backend engineer in Indonesia. Payment and banking systems since 2011, in Go, Laravel, PostgreSQL and Redis. Open the packs or read the CV.">
+<link rel="canonical" href="https://bias.my.id/game/">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#15121b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eeeae4" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Bias Arthony — Backend Engineer">
+<meta property="og:description" content="Backend engineer in Indonesia. Payments and banking since 2011.">
+<meta property="og:url" content="https://bias.my.id/game/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315121b'/%3E%3Crect x='9' y='6' width='14' height='20' rx='2' fill='%23d6984a'/%3E%3Cpath d='M9 11h14' stroke='%2315121b' stroke-width='2' stroke-dasharray='2 2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Bias Arthony","jobTitle":"Backend Engineer","url":"https://bias.my.id/","email":"mailto:biasarthony@gmail.com","address":{"@type":"PostalAddress","addressCountry":"ID"},"sameAs":["https://github.com/bias-arthony","https://linkedin.com/in/biasarthony"],"knowsAbout":["Go","PHP","Laravel","PostgreSQL","MySQL","MongoDB","Redis","RabbitMQ","Docker","REST API","Microservices","Clean Architecture"],"worksFor":{"@type":"Organization","name":"Aleph Labs"}}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip the game, read my CV</a>
+
+<div id="game">
+  <header id="bar">
+    <p class="count">pack <b id="pack-n">1</b><span class="dim"> · <span id="left">17</span> sealed</span></p>
+    <div class="bar-r">
+      <button id="rip" class="ico wide" type="button">Rip it</button>
+      <button id="flip-all" class="ico wide" type="button">Turn all</button>
+      <button id="theme" class="ico" type="button" aria-label="Switch theme">◐</button>
+      <a class="ico" href="#doc" aria-label="Read my CV">≡</a>
+    </div>
+  </header>
+
+  <section id="play" hidden>
+    <div id="stage">
+      <div id="wrap" class="wrap" role="button" tabindex="0" aria-label="Sealed pack. Drag across it to tear it open.">
+        <span class="strip"></span>
+        <span class="mark">bias.my.id</span>
+        <span class="sub">fifteen years, seventeen cards</span>
+      </div>
+      <div id="hand" hidden></div>
+      <p id="tear-hint"></p>
+      <button id="next" class="btn btn-p" type="button" hidden>Open the next pack</button>
+    </div>
+
+    <section id="binder-wrap">
+      <h2>The binder <span class="bn"><span id="have">0</span>/<span id="all-n">17</span></span></h2>
+      <div id="binder"></div>
+    </section>
+  </section>
+
+  <div id="intro">
+    <div class="in">
+      <p class="kick">2011 to 2026</p>
+      <h1>Bias Arthony</h1>
+      <p class="sub">I'm a backend engineer in Indonesia. I build payment and banking systems.</p>
+      <p class="how">Everything I've worked on is sealed in packs. Tear one open, turn the cards over, fill the binder. Seventeen cards, no duplicates, nothing to lose.</p>
+      <div class="row">
+        <button id="start" class="btn btn-p" type="button">Open the first pack</button>
+        <a class="btn" href="#doc">Skip to my CV</a>
+        <a class="btn" href="/">Main site</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="done" hidden>
+    <div class="in">
+      <p class="kick">Binder complete</p>
+      <h2>All seventeen</h2>
+      <p class="sub">Fifteen years of it. If any of this looks like the kind of thing you need, I'm easy to reach.</p>
+      <ul class="links">
+        <li><a href="mailto:biasarthony@gmail.com">biasarthony@gmail.com</a></li>
+        <li><a href="https://github.com/bias-arthony" rel="me">github.com/bias-arthony</a></li>
+        <li><a href="https://linkedin.com/in/biasarthony" rel="me">linkedin.com/in/biasarthony</a></li>
+      </ul>
+      <div class="row">
+        <button id="done-close" class="btn btn-p" type="button">Look at the binder</button>
+        <button id="done-again" class="btn" type="button">Seal it up again</button>
+        <a class="btn" href="#doc">Read my CV</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="doc">
+  <header class="doc-top">
+    <h2>Bias Arthony</h2>
+    <p class="lede">I'm a backend engineer in Indonesia. I've been writing backends since 2011, mostly for things that move money. Go these days. Laravel before that. PostgreSQL and Redis in most of it.</p>
+    <ul class="links">
+      <li><a href="mailto:biasarthony@gmail.com">biasarthony@gmail.com</a></li>
+      <li><a href="https://github.com/bias-arthony" rel="me">github.com/bias-arthony</a></li>
+      <li><a href="https://linkedin.com/in/biasarthony" rel="me">linkedin.com/in/biasarthony</a></li>
+    </ul>
+    <p class="back"><a href="#game">Back to the game</a></p>
+  </header>
+
+  <section class="doc-sec">
+    <h3>Work</h3>
+    <article class="node" id="d-aleph" data-title="Aleph Labs" data-kind="2023 to now">
+      <h4>Aleph Labs — Backend Engineer</h4>
+      <p class="when">2023 – present</p>
+      <p>Payment and banking backends for apps with a lot of users.</p>
+      <ul>
+        <li><b>BRI (Bank Rakyat Indonesia)</b>, Jan 2026 – present. Digital banking platform serving 47.8M+ users.</li>
+        <li><b>MYXL</b>, 2023 – Jan 2026. Payment backend for a major telco app, 39.1M+ users.</li>
+      </ul>
+      <p class="stack">Go, PostgreSQL, Redis, Docker, REST API, HMAC</p>
+    </article>
+    <article class="node" id="d-rebel" data-title="RebelWorks" data-kind="2018 to 2023">
+      <h4>RebelWorks — Backend Developer</h4>
+      <p class="when">2018 – 2023</p>
+      <p>Backend work and payment gateway integrations for client projects.</p>
+      <ul><li>Freshbox, Apollo, DBO, Nimbly, Cimory, Rootin, Dompetkilat, Summit Healthcare, Jaya Manex.</li></ul>
+      <p class="stack">Go, Laravel, MySQL, MongoDB, Redis, RabbitMQ, Xendit, Midtrans</p>
+    </article>
+    <article class="node" id="d-wira" data-title="Wira Imaji Nyata" data-kind="2011 to 2018">
+      <h4>Wira Imaji Nyata — Web Developer</h4>
+      <p class="when">2011 – 2018</p>
+      <p>Corporate sites and campaign microsites.</p>
+      <ul><li>Toshiba, Bebelac, Air Mancur, M150, PT Monokem Surya, Aurora Jewelry.</li></ul>
+      <p class="stack">PHP, MySQL, CMS</p>
+    </article>
+  </section>
+
+  <section class="doc-sec">
+    <h3>Things I've built</h3>
+    <article class="node" id="d-myxl" data-title="MYXL" data-kind="Payments">
+      <h4>MYXL</h4>
+      <p>Payment backend for a big telco app, 39.1M+ users. High volume, lots of payment methods.</p>
+      <p class="stack">Go, Redis, PostgreSQL, HMAC</p>
+      <p><a href="https://www.xl.co.id/myxl" rel="noopener">xl.co.id/myxl</a></p>
+    </article>
+    <article class="node" id="d-apollo" data-title="Apollo" data-kind="Payments">
+      <h4>Apollo</h4>
+      <p>Reimbursement for multiple companies, paying out through Xendit. Each account has its own dashboard. Approvers are set by role, and claims can be bulk imported.</p>
+      <p class="stack">Go, Xendit</p>
+      <p><a href="https://getapollo.co/reimbursement" rel="noopener">getapollo.co/reimbursement</a></p>
+    </article>
+    <article class="node" id="d-rootin" data-title="Rootin" data-kind="Payments">
+      <h4>Rootin</h4>
+      <p>Crowdfunding platform, similar to Kitabisa. Donations go through a payment gateway.</p>
+      <p class="stack">Go</p>
+    </article>
+    <article class="node" id="d-dompetkilat" data-title="Dompetkilat" data-kind="Payments">
+      <h4>Dompetkilat</h4>
+      <p>Peer-to-peer lending platform.</p>
+      <p class="stack">Go</p>
+    </article>
+    <article class="node" id="d-freshbox" data-title="Freshbox" data-kind="Commerce">
+      <h4>Freshbox</h4>
+      <p>Fruit e-commerce buying straight from farmers, so prices stay lower. Free shipping and flash sales.</p>
+      <p class="stack">Laravel, MySQL, Midtrans</p>
+      <p><a href="https://freshbox.id" rel="noopener">freshbox.id</a></p>
+    </article>
+    <article class="node" id="d-dbo" data-title="DBO" data-kind="Operations">
+      <h4>DBO</h4>
+      <p>Runs several outlets from one app. Tracks goods in from suppliers and out to customers, with stock updated in real time.</p>
+      <p class="stack">Go, RabbitMQ, Redis, Laravel</p>
+    </article>
+    <article class="node" id="d-nimbly" data-title="Nimbly" data-kind="Operations">
+      <h4>Nimbly</h4>
+      <p>Admin dashboard for employee operations.</p>
+      <p class="stack">Go, MongoDB</p>
+      <p><a href="https://hellonimbly.com" rel="noopener">hellonimbly.com</a></p>
+    </article>
+    <article class="node" id="d-cimory" data-title="Cimory" data-kind="Operations">
+      <h4>Cimory</h4>
+      <p>HR system. Employee records, cost calculation, automated email.</p>
+      <p class="stack">Laravel, MySQL</p>
+    </article>
+    <article class="node" id="d-summit" data-title="Summit Healthcare" data-kind="Platform">
+      <h4>Summit Healthcare</h4>
+      <p>Learning platform for healthcare training.</p>
+      <p class="stack">Moodle, PHP, MySQL</p>
+      <p><a href="https://summithealthcare.co.id" rel="noopener">summithealthcare.co.id</a></p>
+    </article>
+    <article class="node" id="d-jaya" data-title="Jaya Manex" data-kind="Platform">
+      <h4>Jaya Manex</h4>
+      <p>Corporate profile website.</p>
+      <p class="stack">Laravel</p>
+    </article>
+  </section>
+
+  <section class="doc-sec">
+    <h3>Tools</h3>
+    <article class="node">
+      <dl class="stackgrid">
+        <dt>Languages</dt><dd>Go, PHP, SQL</dd>
+        <dt>Backend</dt><dd>Laravel, REST API, microservices, clean architecture</dd>
+        <dt>Data</dt><dd>PostgreSQL, MySQL, MongoDB, Redis</dd>
+        <dt>Messaging</dt><dd>RabbitMQ</dd>
+        <dt>Infrastructure</dt><dd>Docker, Linux, Git</dd>
+      </dl>
+    </article>
+  </section>
+
+  <section class="doc-sec">
+    <h3>Contact</h3>
+    <article class="node">
+      <p>I'm open to backend work. Payments especially.</p>
+      <ul class="links">
+        <li><a href="mailto:biasarthony@gmail.com">biasarthony@gmail.com</a></li>
+        <li><a href="https://github.com/bias-arthony" rel="me noopener">github.com/bias-arthony</a></li>
+        <li><a href="https://linkedin.com/in/biasarthony" rel="me noopener">linkedin.com/in/biasarthony</a></li>
+      </ul>
+    </article>
+  </section>
+
+  <footer class="doc-foot">
+        <p>Static site. No tracking, no cookies.</p>
+    <p class="back"><a href="/">← Back to bias.my.id</a></p>
+  </footer>
+</main>
+<script src="pack.js" defer></script>
+</body>
+</html>
