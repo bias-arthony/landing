@@ -5,7 +5,7 @@
 <meta name="color-scheme" content="dark light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bias Arthony — Backend Engineer (Go, PostgreSQL, Redis)</title>
-<meta name="description" content="Bias Arthony, backend engineer in Indonesia. Payment and banking systems since 2011. Open the packs.">
+<meta name="description" content="Bias Arthony, backend engineer in Indonesia. Payment and banking systems since 2011, in Go, Laravel, PostgreSQL and Redis. Play through the timeline.">
 <link rel="canonical" href="https://bias.my.id/game/">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#15121b" media="(prefers-color-scheme: dark)">
@@ -15,7 +15,7 @@
 <meta property="og:description" content="Backend engineer in Indonesia. Payments and banking since 2011.">
 <meta property="og:url" content="https://bias.my.id/game/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315121b'/%3E%3Crect x='9' y='6' width='14' height='20' rx='2' fill='%23d6984a'/%3E%3Cpath d='M9 11h14' stroke='%2315121b' stroke-width='2' stroke-dasharray='2 2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315121b'/%3E%3Ccircle cx='16' cy='12' r='5' fill='%23d6984a'/%3E%3Cpath d='M16 17v7M16 24l-4 4M16 24l4 4' stroke='%23d6984a' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -30,66 +30,57 @@
 <a class="skip" href="/">Skip the game, go to the main site</a>
 
 <div id="game">
-  <header id="bar">
-    <p class="count">pack <b id="pack-n">1</b><span class="dim"> · <span id="left">17</span> sealed</span></p>
-    <div class="bar-r">
-      <button id="rip" class="ico wide" type="button">Rip it</button>
-      <button id="flip-all" class="ico wide" type="button">Turn all</button>
-      <button id="theme" class="ico" type="button" aria-label="Switch theme">◐</button>
-      <a class="ico" href="/" aria-label="Back to the main site">≡</a>
-    </div>
-  </header>
-
-  <section id="play" hidden>
-    <div id="stage">
-      <div id="wrap" class="wrap" role="button" tabindex="0" aria-label="Sealed pack. Drag across it to tear it open.">
-        <span class="strip"></span>
-        <span class="mark">bias.my.id</span>
-        <span class="sub">fifteen years, seventeen cards</span>
-      </div>
-      <div id="hand" hidden></div>
-      <p id="tear-hint"></p>
-      <button id="next" class="btn btn-p" type="button" hidden>Open the next pack</button>
-    </div>
-
-    <section id="binder-wrap">
-      <h2>The binder <span class="bn"><span id="have">0</span>/<span id="all-n">17</span></span></h2>
-      <div id="binder"></div>
-    </section>
-  </section>
+  <canvas id="stage" role="img" aria-label="A side-scrolling run through fifteen years of work. The same information is written out in the document below."></canvas>
 
   <div id="intro">
     <div class="in">
       <p class="kick">2011 to 2026</p>
       <h1>Bias Arthony</h1>
       <p class="sub">I'm a backend engineer in Indonesia. I build payment and banking systems.</p>
-      <p class="how">Everything I've worked on is sealed in packs. Tear one open, turn the cards over, fill the binder. Seventeen cards, no duplicates, nothing to lose.</p>
+      <p class="how">Tap or press space to jump. Bump into things to see what they were. There are <span id="intro-total">17</span>.</p>
+      <div class="speed" role="group" aria-label="Running speed">
+        <span class="sp-k">Speed</span>
+        <button class="sp" data-s="slow" type="button">Slow</button>
+        <button class="sp" data-s="normal" type="button">Normal</button>
+        <button class="sp" data-s="fast" type="button">Fast</button>
+      </div>
       <div class="row">
-        <button id="start" class="btn btn-p" type="button">Open the first pack</button>
+        <button id="go" class="btn btn-p" type="button">Start</button>
         <a class="btn" href="/">Skip to the main site</a>
       </div>
     </div>
   </div>
 
-  <div id="done" hidden>
+  <div id="hud" hidden>
+    <p class="found"><span id="found">0</span><span class="sl">/</span><span id="total">17</span> found<span class="sp-now" id="sp-now"></span></p>
+    <div class="hud-r">
+      <button id="slower" class="ico" type="button" aria-label="Slow down">−</button>
+      <button id="faster" class="ico" type="button" aria-label="Speed up">+</button>
+      <button id="theme" class="ico" type="button" aria-label="Switch theme">◐</button>
+      <a class="ico" href="/" aria-label="Back to the main site">≡</a>
+    </div>
+  </div>
+
+  <div id="cards" aria-live="polite"></div>
+
+  <div id="over" hidden>
     <div class="in">
-      <p class="kick">Binder complete</p>
-      <h2>All seventeen</h2>
-      <p class="sub">Fifteen years of it. If any of this looks like the kind of thing you need, I'm easy to reach.</p>
+      <p class="kick">You found <span id="over-n">0</span>.</p>
+      <h2>Here's all of it</h2>
+      <div id="over-list"></div>
       <ul class="links">
         <li><a href="mailto:biasarthony@gmail.com">biasarthony@gmail.com</a></li>
         <li><a href="https://github.com/bias-arthony" rel="me">github.com/bias-arthony</a></li>
         <li><a href="https://linkedin.com/in/biasarthony" rel="me">linkedin.com/in/biasarthony</a></li>
       </ul>
       <div class="row">
-        <button id="done-close" class="btn btn-p" type="button">Look at the binder</button>
-        <button id="done-again" class="btn" type="button">Seal it up again</button>
+        <button id="again" class="btn btn-p" type="button">Run again</button>
         <a class="btn" href="/">Back to the site</a>
       </div>
     </div>
   </div>
 </div>
 
-<script src="pack.js" defer></script>
+<script src="game.js" defer></script>
 </body>
 </html>
