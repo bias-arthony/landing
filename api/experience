@@ -12,7 +12,7 @@
     "company": "RebelWorks",
     "location": "Jakarta",
     "period": "2018 - 2023",
-    "projects": ["Freshbox", "Rootin", "Nimbly", "Cimory", "Summit Healthcare", "Jaya Manex", "Dompetkilat"],
+    "projects": ["Freshbox", "Rootin", "Nimbly", "Cimory", "Summit Healthcare", "Jaya Manex", "Dompetkilat", "DBO", "Apollo"],
     "stack": ["Go", "Laravel", "MySQL", "MongoDB", "Redis"]
   },
   {

@@ -52,6 +52,7 @@ a:hover{color:var(--fg)}
 .ico{width:34px;height:34px;display:grid;place-items:center;border-radius:5px;border:1px solid var(--line);
   background:color-mix(in srgb,var(--surf) 75%,transparent);color:var(--dim);font-size:15px;cursor:pointer;text-decoration:none;line-height:1}
 .ico:hover{color:var(--acc);border-color:var(--acc)}
+.ico.wide{width:auto;padding:0 10px;font:500 12px var(--mono)}
 
 /* ── collected cards ── */
 #cards{position:absolute;z-index:11;left:50%;transform:translateX(-50%);
