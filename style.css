@@ -60,6 +60,8 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover { color: var(--fg); }
 .nav-links a.active { color: var(--green); }
 .nav-right a:hover { color: var(--green); }
+.nav-right a.nav-play { color: var(--green); }
+.only-mobile { display: none; }
 .nav-right { display: flex; align-items: center; gap: 18px; }
 .nav-right a { font-family: var(--mono); font-size: 12px; color: var(--muted); transition: color .18s; }
 .nav-right a:hover { color: var(--fg); }
@@ -183,8 +185,6 @@ a { color: inherit; text-decoration: none; }
 .footer-inner { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .footer .brand { font-size: 14px; margin-bottom: 8px; }
 .footer-meta { display: flex; flex-direction: column; gap: 4px; text-align: right; }
-.footer-meta a { color: var(--green); border-bottom: 1px solid transparent; transition: border-color .18s; }
-.footer-meta a:hover { border-color: var(--green); }
 
 /* ── Reveal ──────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
@@ -201,6 +201,7 @@ a { color: inherit; text-decoration: none; }
   }
   .nav-links.open { display: flex; max-height: 360px; }
   .nav-links a { padding: 15px var(--pad); border-top: 1px solid var(--border); }
+  .nav-links a.only-mobile { display: block; color: var(--green); }
   .hero { grid-template-columns: 1fr; gap: 34px; padding-top: 56px; }
   .hero h1 { font-size: 44px; }
   .lead { font-size: 18px; }
