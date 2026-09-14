@@ -37,7 +37,9 @@
       <p class="kick">2011 to 2026</p>
       <h1>Bias Arthony</h1>
       <p class="sub">I'm a backend engineer in Indonesia. I build payment and banking systems.</p>
-      <p class="how">Tap or press space to jump. Bump into things to see what they were. There are <span id="intro-total">17</span>.</p>
+      <p class="how">Tap or press space to jump. Bump into things to see what they were. There are <span
+          id="intro-total">17</span>. The run keeps going — collect them again for points, and finish when you've had
+        enough.</p>
       <div class="speed" role="group" aria-label="Running speed">
         <span class="sp-k">Speed</span>
         <button class="sp" data-s="slow" type="button">Slow</button>
@@ -52,8 +54,10 @@
   </div>
 
   <div id="hud" hidden>
-    <p class="found"><span id="found">0</span><span class="sl">/</span><span id="total">17</span> found<span class="sp-now" id="sp-now"></span></p>
+    <p class="found"><span id="found">0</span><span class="sl">/</span><span id="total">17</span> found<span
+        class="sl">·</span><span id="score">0</span> pts<span class="sp-now" id="sp-now"></span></p>
     <div class="hud-r">
+      <button id="stop" class="ico wide" type="button">Finish</button>
       <button id="slower" class="ico" type="button" aria-label="Slow down">−</button>
       <button id="faster" class="ico" type="button" aria-label="Speed up">+</button>
       <button id="theme" class="ico" type="button" aria-label="Switch theme">◐</button>
@@ -65,7 +69,8 @@
 
   <div id="over" hidden>
     <div class="in">
-      <p class="kick">You found <span id="over-n">0</span>.</p>
+      <p class="kick">You found <span id="over-n">0</span>. Score <span id="over-score">0</span> · best <span
+          id="over-best">0</span>.</p>
       <h2>Here's all of it</h2>
       <div id="over-list"></div>
       <ul class="links">

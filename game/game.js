@@ -47,7 +47,9 @@
         { n: 'Cimory', k: 'system', d: 'HR records and cost calculation. Laravel, MySQL.', doc: 'd-cimory' },
         { n: 'Summit Healthcare', k: 'system', d: 'Healthcare training platform. Moodle, PHP, MySQL.', doc: 'd-summit' },
         { n: 'Jaya Manex', k: 'system', d: 'Corporate profile site. Laravel.', doc: 'd-jaya' },
-        { n: 'Dompetkilat', k: 'system', d: 'Peer-to-peer lending. Go.', doc: 'd-dompetkilat' }
+        { n: 'Dompetkilat', k: 'system', d: 'Peer-to-peer lending. Go.', doc: 'd-dompetkilat' },
+        { n: 'DBO', k: 'system', d: 'Multi-outlet stock in real time. Go, RabbitMQ, Redis, Laravel.', doc: 'd-dbo' },
+        { n: 'Apollo', k: 'system', d: 'Reimbursement with Xendit payouts. Go.', doc: 'd-apollo' }
       ] },
     { from: 2023, to: 2026, org: 'Aleph Labs', role: 'Backend Engineer',
       tint: [16, 26, 50], glow: [104, 150, 236],
@@ -56,13 +58,6 @@
         { n: 'BRI', k: 'system', d: 'Digital banking platform. 47.8M+ users. Since Jan 2026.', doc: 'd-aleph' }
       ] }
   ];
-  var TAIL = {
-    label: 'also built',
-    items: [
-      { n: 'DBO', k: 'system', d: 'Multi-outlet stock in real time. Go, RabbitMQ, Redis, Laravel.', doc: 'd-dbo' },
-      { n: 'Apollo', k: 'system', d: 'Reimbursement with Xendit payouts. Go.', doc: 'd-apollo' }
-    ]
-  };
 
   /* ── build the world ── */
   var things = [], signs = [], WORLD = 0;
@@ -77,11 +72,7 @@
         if (i < n - 1) things.push({ x: x + span / (n + 1) / 2, kind: 'block', era: e });
       });
     });
-    var tx = (END - START) * PX_YEAR + 260;
-    TAIL.items.forEach(function (it, i) {
-      things.push({ x: tx + i * 320, high: i % 2 === 1, kind: 'pick', it: it, era: ERAS[2], got: false });
-    });
-    WORLD = tx + TAIL.items.length * 320 + 420;
+    WORLD = (END - START) * PX_YEAR + 420;
   })();
   var TOTAL = things.filter(function (t) { return t.kind === 'pick'; }).length;
 
@@ -93,7 +84,8 @@
   var S = null;
   function reset() {
     S = { x: 0, y: 0, vy: 0, air: false, run: false, done: false,
-          got: 0, stumble: 0, t: 0, cards: [], legs: 0 };
+          got: 0, stumble: 0, t: 0, cards: [], legs: 0,
+          score: 0, found: {}, lap: 0, shown: 0 };
   }
   reset();
 
@@ -155,12 +147,21 @@
       if (S.stumble > 0) S.stumble -= dt;
       S.x += sp * dt;
       S.legs += sp * dt;
+      S.score += sp * dt * 0.1;
 
       S.vy += GRAV * dt; S.y += S.vy * dt;
       if (S.y > 0) { S.y = 0; S.vy = 0; S.air = false; }
 
       collide();
-      if (S.x >= WORLD) { S.done = true; finish(); }
+
+      // endless: loop back to 2011 and let everything be collected again
+      if (S.x >= WORLD) {
+        S.x -= WORLD;
+        S.lap++;
+        things.forEach(function (t) { t.got = false; t.hit = false; });
+      }
+
+      if (Math.floor(S.score) !== S.shown) { S.shown = Math.floor(S.score); $('score').textContent = S.shown; }
     }
 
     draw();
@@ -176,8 +177,13 @@
       if (Math.abs(t.x - px) > 40) continue;
       var ty = t.kind === 'block' ? 0 : (t.high ? 96 : 40);
       if (Math.abs(ty - py) > 44) continue;
-      if (t.kind === 'pick') { t.got = true; S.got++; card(t); }
-      else { t.hit = true; S.stumble = .55; }
+      if (t.kind === 'pick') {
+        t.got = true;
+        S.score += 100;
+        // the counter tracks distinct work found, not how many laps you ran
+        if (!S.found[t.it.n]) { S.found[t.it.n] = 1; S.got++; }
+        card(t);
+      } else { t.hit = true; S.stumble = .55; }
     }
   }
 
@@ -342,22 +348,30 @@
     things.forEach(function (t) { t.got = false; t.hit = false; });
     reset(); S.run = true;
     $('found').textContent = '0'; $('total').textContent = TOTAL;
+    $('score').textContent = '0';
     last = performance.now();
     if (!raf) raf = requestAnimationFrame(tick);
   }
   $('go').addEventListener('click', start);
   $('again').addEventListener('click', start);
+  $('stop').addEventListener('click', finish);
 
   function finish() {
+    S.done = true;
     $('hud').hidden = true;
+    var best = 0;
+    try { best = parseInt(localStorage.getItem('run-best') || '0', 10) || 0; } catch (e) {}
+    var sc = Math.floor(S.score);
+    if (sc > best) { best = sc; try { localStorage.setItem('run-best', String(best)); } catch (e) {} }
+    $('over-score').textContent = sc;
+    $('over-best').textContent = best;
     $('over-n').textContent = S.got + ' of ' + TOTAL;
     var box = $('over-list');
     box.replaceChildren();
-    ERAS.concat([{ org: TAIL.label, role: '', items: TAIL.items, tint: ERAS[2].tint, glow: ERAS[2].glow, tail: true }])
-      .forEach(function (e) {
+    ERAS.forEach(function (e) {
         var h = document.createElement('p');
         h.className = 'ov-h';
-        h.textContent = e.tail ? e.org : e.org + ', ' + e.role + ', ' + e.from + ' to ' + (e.to === 2026 ? 'now' : e.to);
+        h.textContent = e.org + ', ' + e.role + ', ' + e.from + ' to ' + (e.to === 2026 ? 'now' : e.to);
         box.appendChild(h);
         var ul = document.createElement('ul');
         ul.className = 'ov-l';
